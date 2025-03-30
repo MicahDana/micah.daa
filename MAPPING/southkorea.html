@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>South Korea - The Land of the Morning Calm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* GLOBAL RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* REMOVE BULLETS */
+    ul {
+      list-style: none;
+    }
+    body {
+      font-family: "Trebuchet MS", Tahoma, sans-serif;
+      background: linear-gradient(to bottom, #bfd4ff, #ede8f5);
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+    /* UPDATED NAVIGATION */
+    nav {
+      position: fixed;
+      top: 0;
+      margin-left: 140px; /* space for the logo */
+      width: calc(100% - 140px);
+      padding: 0.5rem 2rem;
+      display: flex;
+      justify-content: center;
+      background-color: #86b6f6;
+      border-bottom-left-radius: 40px;
+      box-shadow: 10px 1px 5px rgba(0,0,0,0.5);
+      z-index: 900;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links a {
+      font-family: Verdana, sans-serif;
+      display: block;
+      padding: 0.8rem 1rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background-color: #0e11a6;
+      color: #fff;
+    }
+    .nav-links a.active,
+    .nav-links a.active:focus {
+      background-color: #0e11a6;
+      color: #fff;
+      text-decoration: underline;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #86b6f6;
+      min-width: 160px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+      opacity: 1;
+      visibility: visible;
+    }
+    .dropdown-content a {
+      font-family: Verdana, sans-serif;
+      display: block;
+      padding: 0.6rem 1rem;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    .dropdown-content a:hover,
+    .dropdown-content a:focus {
+      background-color: #0e11a6;
+      color: #fff;
+    }
+    /* UPDATED LOGO (Circular) */
+    .logo-img {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 80px;
+      height: 80px;
+      z-index: 1000;
+      border-radius: 50%;
+      overflow: hidden;
+      background: transparent;
+    }
+    .logo-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* MAIN CONTAINER */
+    .container {
+      padding-top: 220px; 
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px;
+    }
+    /* FLAG + TITLE SECTION */
+    .flag-title-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .flag-title-section img {
+      width: 120px;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    .flag-title-text {
+      text-align: left;
+    }
+    .flag-title-text h1 {
+      font-size: 2rem;
+      color: #0e11a6;
+      font-family: "DM Serif", Georgia, serif;
+      margin-bottom: 5px;
+    }
+    .flag-title-text h2 {
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #444;
+    }
+    /* WHITE BOX CONTAINER */
+    .white-box {
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .white-box p {
+      text-align: justify;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    /* Added personal note in the white-box */
+    .white-box .personal-note {
+      font-style: italic;
+      margin-top: 10px;
+      color: #0e11a6;
+    }
+    .white-box h3 {
+      color: #0e11a6;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    /* PHOTO GALLERY - Using CSS Grid for 2 images per row */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      justify-items: center;
+      margin-top: 20px;
+    }
+    .gallery-item {
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    /* BUTTONS */
+    /* Fixed Back to Map Button */
+    .back-to-map a {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #86b6f6;
+      color: #fff;
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+      z-index: 999;
+    }
+    .back-to-map a:hover {
+      background-color: #0e11a6;
+    }
+    /* Non-fixed Go Top Button */
+    .go-top-button {
+      display: inline-block;
+      background-color: #0e11a6;
+      color: #fff;
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+      margin-top: 30px;
+    }
+    .go-top-button:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- UPDATED LOGO -->
+  <div class="logo-img">
+    <img src="../MDlogo.jpg" alt="MD Logo">
+  </div>
+
+  <!-- UPDATED NAVIGATION BAR -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="../home.html">Home</a></li>
+      <li><a href="../biography.html">Biography</a></li>
+      <li><a href="../skills.html">Skills</a></li>
+      <li><a href="../resume.html">Resume</a></li>
+      <li><a href="../gallery.html">Gallery</a></li>
+      <li class="dropdown">
+        <a href="#">More ▼</a>
+        <ul class="dropdown-content">
+          <li><a href="../mybeats.html">My Beats</a></li>
+          <li><a href="../mykindsoffilm.html">My Kinds of Film</a></li>
+          <li><a href="../mydream.html">Dream Places</a></li>
+          <li><a href="../bucketlist.html">Bucket List</a></li>
+        </ul>
+      </li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- SPACERS -->
+  <br><br><br><br><br><br>
+
+  <div class="container">
+    <!-- FLAG + TITLE SECTION -->
+    <div class="flag-title-section">
+      <img src="IMAGES/flagsouthkorea.jpg" alt="South Korea Flag">
+      <div class="flag-title-text">
+        <h1>South Korea</h1>
+        <h2>The Land of the Morning Calm</h2>
+      </div>
+    </div>
+
+    <!-- WHITE BOX FOR ADDITIONAL INFO -->
+    <div class="white-box">
+      <p>
+        South Korea is a vibrant country where ancient traditions blend seamlessly with modern technology.
+        From the dynamic energy of Seoul to the scenic beauty of Jeju Island, the country offers an exciting cultural experience.
+        I have always been fascinated by South Korea’s rich history, innovative spirit, and its delicious cuisine.
+        Every visit leaves me with unforgettable memories and a desire to explore even more.
+      </p>
+      <p class="personal-note">
+        It is especially special to me because I am a longtime fan of K-dramas.
+      </p>
+      <p>
+        The discipline and work ethic of its people, along with the country's cutting-edge technology and pop culture,
+        create an environment that is both inspiring and comforting. It feels like stepping into a world where history meets innovation.
+      </p>
+      <!-- HOW TO GET THERE -->
+      <h3>How to Get There</h3>
+      <p>
+        International flights typically arrive at Incheon International Airport, one of the busiest airports in the world.
+        From there, you can easily reach Seoul and other parts of the country via an efficient public transport system, including subways, buses, and high-speed trains.
+      </p>
+      <!-- OTHER PLACES TO VISIT -->
+      <h3>Other Places to Visit</h3>
+      <p>
+        Beyond Seoul, consider visiting Busan for its beautiful beaches, Jeju Island for its natural wonders, and the ancient city of Gyeongju to witness Korea's historical treasures.
+      </p>
+      <!-- DETAILED PICTURES OF SCENERIES (GALLERY) -->
+      <h3>Detailed Pictures of the Sceneries</h3>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="IMAGES/seoul.jpg" alt="Seoul Skyline">
+        </div>
+        <div class="gallery-item">
+          <img src="IMAGES/seoul2.jpg" alt="Historic Palace in Seoul">
+        </div>
+        <div class="gallery-item">
+          <img src="IMAGES/seoul3.jpg" alt="Jeju Island Landscape">
+        </div>
+        <div class="gallery-item">
+          <img src="IMAGES/seoul4.jpg" alt="Busan Beach">
+        </div>
+      </div>
+
+      <!-- Non-fixed Go Top Button -->
+      <a href="javascript:void(0)" class="go-top-button" onclick="scrollToTop()">Go Top</a>
+    </div> <!-- end of white-box -->
+  </div> <!-- end of container -->
+
+  <!-- FIXED "BACK TO MAP" BUTTON -->
+  <div class="back-to-map">
+    <a href="../mydream.html">Back to Map</a>
+  </div>
+
+  <!-- SMOOTH SCROLL SCRIPT -->
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    }
+  </script>
+</body>
+</html>
